@@ -18,8 +18,8 @@
  */
 
 // The new version of THT we're installing
-define("NVER", "1.3");
-define("NVERCODE", 1010300);
+define("NVER", "1.3.01");
+define("NVERCODE", 1010301);
 
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 

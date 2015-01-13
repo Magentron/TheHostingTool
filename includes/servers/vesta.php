@@ -16,6 +16,15 @@ class vesta {
 	
 	private $server;
 	
+    // Valid username regex
+    private static $validUsernameRegex = '/^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,28}[a-zA-Z0-9]$/';
+
+    public function __construct($serverId = null) {
+        if(!is_null($serverId)) {
+            $this->server = (int)$serverId;
+        }
+    }
+
 	private function serverDetails($server) {
 		global $db;
 		global $main;
@@ -194,5 +203,31 @@ class vesta {
 			echo "This feature is currently unsupported for VestaCP.";
 			return false;
 		}
+
+		public function checkUsername($username)
+		{
+				// We're not going to check with the actual server because that's an expensive (time) operation
+				if(!preg_match(self::$validUsernameRegex, $username)) {
+					return "Username must be alphanumeric (incl. '-', '.' or '_'), start and end with a letter or number, and between 2 and 30 characters.";
+				}
+				return true;
+		}
 		
+		public function changePwd($acct, $newpwd, $server)
+		{
+				# v-change-user-password USER PASSWORD
+                $this->server = $server;
+                
+				// Prepare POST query
+				$chnageAcct = array(
+					"returncode"	=>		"yes",
+					"cmd"			=>		"v-change-user-password",
+					"arg1"			=>		$acct,
+					"arg2"			=>		$newpwd,
+				);
+				//$postdata = http_build_query($delAcct);
+
+				
+                return $this->remote($delAcct); 
+		}
 }

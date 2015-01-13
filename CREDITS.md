@@ -26,3 +26,6 @@ Developer.
 
 ### [Julio Montoya](https://github.com/jmontoyaa)
 Contributor. [@jmontoya](https://twitter.com/jmontoya)
+
+### [Jeroen Derks](https://github.com/magentron)
+Contributor. [@Magentron](https://twitter.com/Magentron)
